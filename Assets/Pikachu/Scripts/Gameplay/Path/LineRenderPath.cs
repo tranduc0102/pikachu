@@ -82,6 +82,14 @@ namespace _pikachu
                 _line2.SetPosition(path2[0]);
                 _line1.gameObject.SetActive(true);
                 _line2.gameObject.SetActive(true);
+                if(GetDistance(path1) > 7f)
+                {
+                    _line1.speed1 = 14f;
+                }
+                if (GetDistance(path2) > 7f)
+                {
+                    _line2.speed1 = 14f;
+                }
                 SpeedMove1(path1, path2);
                 _line1.StartCoroutine(_line1.MoveLine(path1));
                 _line2.StartCoroutine(_line2.MoveLine(path2));
@@ -110,7 +118,24 @@ namespace _pikachu
                 _line3.gameObject.SetActive(true);
                 _line3.SetPosition(0, path2[0]);
                 _line3.SetPosition(1, path2[path2.Count - 1]);
+                if (GetDistance(path1) > 7f)
+                {
+                    _line1.speed1 = 14f;
+                }
+                if (GetDistance(path3) > 7f)
+                {
+                    _line2.speed1 = 14f;
+                }
                 SpeedMove1(path1, path3);
+
+                if (GetDistance(path4) > 7f)
+                {
+                    _line1.speed2 = 14f;
+                }
+                if (GetDistance(path5) > 7f)
+                {
+                    _line2.speed2 = 14f;
+                }
                 SpeedMove2(path4, path5);
                 _line1.StartCoroutine(_line1.MoveLine(path1, path4, _line3.gameObject));
                 _line2.StartCoroutine(_line2.MoveLine(path3, path5, _line3.gameObject));

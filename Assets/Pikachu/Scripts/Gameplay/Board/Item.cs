@@ -88,6 +88,12 @@ namespace _pikachu
                 .Join(transform.DORotate(new Vector3(0, 0, 30f), 0.05f))
                 .SetLoops(2, LoopType.Yoyo).OnKill(() => UIManager.Instance.IsClickChange = false);
         }
+        public void AnimActive()
+        {
+            Sequence ItemSequence = DOTween.Sequence();
+            ItemSequence
+                .Append(transform.DOScale(new Vector3(1f, 1f, 1f), 0.2f)).SetEase(Ease.OutBack);
+        }
         public void ActiveTut()
         {
             spriteObject.sortingOrder = 20;

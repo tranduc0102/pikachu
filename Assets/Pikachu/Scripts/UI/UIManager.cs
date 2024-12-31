@@ -33,10 +33,10 @@ namespace _pikachu
         {
             btnBack.onClick.AddListener(() => { });
             btnPause.onClick.AddListener(() => {
-        /*        if (GameManager.Instance.Over)
+                if (GameManager.Instance.Over)
                 {
                     return;
-                }*/
+                }
                 GameManager.Instance.Pause = true;
                 panelPause.gameObject.SetActive(true);
             });
@@ -137,12 +137,12 @@ namespace _pikachu
         {
             Debug.Log("WIN");
             hoverHintChange.DOFade(0f, 1f).OnComplete(() => hoverHintChange.gameObject.SetActive(false));
-            btnHint.transform.DOScale(new Vector3(1.7f, 1.7f, 1f), 0.35f)
+            btnHint.transform.DOScale(new Vector3(1.25f, 1.25f, 1.25f), 0.35f)
                 .SetLoops(2, LoopType.Yoyo).OnComplete(() => {
                     btnHint.transform.localScale = new Vector3(0.5f, 0.5f, 1f);
                     FadeChildren(btnHint, 0f);
                 });
-            btnChange.transform.DOScale(new Vector3(1.7f, 1.7f, 1f), 0.35f)
+            btnChange.transform.DOScale(new Vector3(1.25f, 1.25f, 1.25f), 0.35f)
                .SetLoops(2, LoopType.Yoyo).OnComplete(() => {
                    btnChange.transform.localScale = new Vector3(0.5f, 0.5f, 1f);
                    FadeChildren(btnChange, 0f);

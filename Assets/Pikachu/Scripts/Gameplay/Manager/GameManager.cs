@@ -176,8 +176,8 @@ namespace _pikachu
             clearItems = 0;
             DOTween.SetTweensCapacity(500, 200);
             level = PlayerPrefs.GetInt(StringUse.CurrentLevel, 1);
-       /*     NumberCanUseChange = 300;
-            NumberCanUseHint = 300;*/
+            NumberCanUseChange = 300;
+            NumberCanUseHint = 300;
             difficultyLevel = DifficultyLevel;
             isIncreasingDifficulty = IsIncreasingDifficulty;
             SpawnLevel();
@@ -216,33 +216,37 @@ namespace _pikachu
 
                 if (firstPosition.value == secondPosition.value && isConnection)
                 {
+
                     firstItem.value = -1;
                     secondItem.value = -1;
                     firstPosition.transform.DOScale(new Vector3(0.35f, 0.35f, 1f), 0.25f)
                      .OnComplete(() => { board._itemPool.ReturnItem(firstPosition); });
                     secondPosition.transform.DOScale(new Vector3(0.35f, 0.35f, 1f), 0.25f)
                      .OnComplete(() => { board._itemPool.ReturnItem(secondPosition); });
-                    ResetItems();
                     SoundManager.Instance.PlayLink();
                     if (modeDir == ModeDirection.Right)
                     {
-                        DOVirtual.DelayedCall(0.3f, () => { board.UpdateBoardLevelRight(firstPosition, secondPosition); });
+                        DOVirtual.DelayedCall(0.3f, () => { board.UpdateBoardLevelRight(firstPosition, secondPosition); }).OnKill(() => ResetItems());
 
                     }
                     else if (modeDir == ModeDirection.Left)
                     {
-                        DOVirtual.DelayedCall(0.3f, () => { board.UpdateBoardLevelLeft(firstPosition, secondPosition); });
+                        DOVirtual.DelayedCall(0.3f, () => { board.UpdateBoardLevelLeft(firstPosition, secondPosition); }).OnKill(() => ResetItems());
 
                     }
                     else if (modeDir == ModeDirection.Down)
                     {
-                        DOVirtual.DelayedCall(0.3f, () => { board.UpdateBoardLevelDown(firstPosition, secondPosition); });
+                        DOVirtual.DelayedCall(0.3f, () => { board.UpdateBoardLevelDown(firstPosition, secondPosition); }).OnKill(() => ResetItems());
 
                     }
                     else if (modeDir == ModeDirection.Up)
                     {
-                        DOVirtual.DelayedCall(0.3f, () => { board.UpdateBoardLevelUp(firstPosition, secondPosition); });
+                        DOVirtual.DelayedCall(0.3f, () => { board.UpdateBoardLevelUp(firstPosition, secondPosition); }).OnKill(() => ResetItems());
 
+                    }
+                    else
+                    {
+                        ResetItems();
                     }
                     clearItems += 2;
                     if (clearItems >= totalItems)

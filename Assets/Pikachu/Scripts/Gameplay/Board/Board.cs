@@ -128,122 +128,46 @@ namespace _pikachu
                     newItem.column = j;
                     newItem.value = ListValues[index];
                     newItem.spriteObject.sprite = spritesItem[ListValues[index]];
+                    newItem.transform.localScale = Vector3.zero;
                     items[i, j] = newItem;
                     index++;
                 }
             }
 
         }
-
-        [System.Obsolete]
-        public void SpawnShapePlus(int start, int end)
+        public void activeAnimItems()
         {
-            items = new Item[totalRow, totalColumn];
-            if (totalColumn == 12 && totalRow == 10)
+            StartCoroutine(StartAnim());
+        }
+        IEnumerator StartAnim()
+        {
+            GameManager.Instance.Pause = true;
+            for (int j = 0; j < items.GetLength(1); j++)
             {
-                totalItem = 56;
-                GetValues(start, end);
-                int index = 0;
-
-                for (int i = 0; i < totalRow; i++)
+                for(int i = 0; i < items.GetLength(0); i++)
                 {
-                    for (int j = 0; j < totalColumn; j++)
+                    if (items[i, j].gameObject.activeSelf)
                     {
-                        // Kiểm tra vị trí để xác định item chính hay item biên
-                        if (((i >= 3 && i <= 6) && (j >= 1 && j <= 3)) ||
-                            ((i >= 1 && i <= 8) && (j >= 4 && j <= 7)) ||
-                            ((i >= 3 && i <= 6) && (j >= 7 && j < totalColumn - 1)))
-                        {
-                            // Tính toán vị trí với khoảng cách cellXY
-                            float posX = (i - _boardObject.position.x) * (cellXY + 1);
-                            float posY = (j - _boardObject.position.y) * (cellXY + 1);
-
-                            Item newItem = _itemPool.GetItem(_itemPrefab, new Vector3(posX, posY, 0f), _boardObject);
-                            newItem.name = $"[{i}, {j}]";
-                            newItem.row = i;
-                            newItem.column = j;
-                            newItem.value = ListValues[index];
-                            newItem.spriteObject.sprite = spritesItem[ListValues[index]];
-                            items[i, j] = newItem;
-                            index++;
-                        }
-                        else
-                        {
-                            // Tính toán vị trí với khoảng cách cellXY cho item biên
-                            float posX = (i - _boardObject.position.x) * (cellXY + 1);
-                            float posY = (j - _boardObject.position.y) * (cellXY + 1);
-
-                            Item borderItem = _itemPool.GetItem(_itemPrefab, new Vector3(posX, posY, 0f), _boardObject);
-                            borderItem.name = "Border";
-                            borderItem.row = i;
-                            borderItem.column = j;
-                            borderItem.gameObject.SetActive(false);
-                            items[i, j] = borderItem;
-                            _listBorder.Add(borderItem);
-                        }
+                        items[i, j].AnimActive();
+                        yield return new WaitForSeconds(0.02f);
+                    }
+                    else
+                    {
+                        yield return null;
                     }
                 }
             }
+            GameManager.Instance.Pause = false;
         }
-
-
-        [System.Obsolete]
-        public void SpawnShapeDiamond(int start, int end)
-        {
-            items = new Item[totalRow, totalColumn];
-            if (totalColumn == 12 && totalRow == 10)
-            {
-                totalItem = 56;
-                GetValues(start, end);
-                int index = 0;
-
-                for (int i = 0; i < totalRow; i++)
-                {
-                    for (int j = 0; j < totalColumn; j++)
-                    {
-                        // Kiểm tra điều kiện để xác định item chính
-                        if (((i >= 1 && i < totalRow - 1) && (j >= 4 && j <= 7)) ||
-                            ((i >= 4 && i <= 5) && (j == 1 || j == 10)) ||
-                            ((i >= 3 && i <= 6) && (j == 2 || j == 9)) ||
-                            ((i >= 2 && i <= 7) && (j == 3 || j == 8)))
-                        {
-                            // Tính toán vị trí với khoảng cách cellXY
-                            float posX = (i - _boardObject.position.x) * (cellXY + 1);
-                            float posY = (j - _boardObject.position.y) * (cellXY + 1);
-
-                            Item newItem = _itemPool.GetItem(_itemPrefab, new Vector3(posX, posY, 0f), _boardObject);
-                            newItem.name = $"[{i}, {j}]";
-                            newItem.row = i;
-                            newItem.column = j;
-                            newItem.value = ListValues[index];
-                            newItem.spriteObject.sprite = spritesItem[ListValues[index]];
-                            items[i, j] = newItem;
-                            index++;
-                        }
-                        else
-                        {
-                            // Tính toán vị trí với khoảng cách cellXY cho item biên
-                            float posX = (i - _boardObject.position.x) * (cellXY + 1);
-                            float posY = (j - _boardObject.position.y) * (cellXY + 1);
-
-                            Item borderItem = _itemPool.GetItem(_itemPrefab, new Vector3(posX, posY, 0f), _boardObject);
-                            borderItem.name = "Border";
-                            borderItem.row = i;
-                            borderItem.column = j;
-                            borderItem.gameObject.SetActive(false);
-                            items[i, j] = borderItem;
-                            _listBorder.Add(borderItem);
-                        }
-                    }
-                }
-            }
-        }
-
         public bool CheckConnectItem(Item startItem, Item endItem, bool hint = false)
         {
 
-            if (startItem.value != endItem.value || startItem == endItem)
+            if (startItem == null || endItem == null ||
+                startItem.value != endItem.value ||
+                ReferenceEquals(startItem, endItem))
+            {
                 return false;
+            }
             Queue<(Item item, int changeDirection, List<Item> path)> queue = new Queue<(Item, int, List<Item>)>();
             Dictionary<Item, int> visited = new Dictionary<Item, int>();
 
@@ -261,7 +185,8 @@ namespace _pikachu
                 {
                     if (!hint)
                     {
-                        DOVirtual.DelayedCall(0.15f, () => {
+                        DOVirtual.DelayedCall(0.15f, () =>
+                        {
                             LineRenderPath objPath = _itemPool.GetItem(_path, transform.position);
                             objPath.DrawPathWithLineRenderer(path);
                         });
@@ -321,7 +246,7 @@ namespace _pikachu
             {
                 for (int column = 0; column < items.GetLength(1); column++)
                 {
-                    if (!items[row, column].gameObject.activeSelf)
+                    if (!items[row, column].gameObject.activeSelf || items[row, column].value == -1 )
                     {
                         continue;
                     }
@@ -331,7 +256,7 @@ namespace _pikachu
 
                     foreach (Item position in positions)
                     {
-                        if (CheckConnectItem(firstPosition, position, true) && firstPosition != position)
+                        if (CheckConnectItem(firstPosition, items[position.row, position.column], true) && !ReferenceEquals(firstPosition, items[position.row, position.column]))
                         {
                             hintObject1 = items[row, column];
                             hintObject2 = items[position.row, position.column];
@@ -433,31 +358,6 @@ namespace _pikachu
         }
 
         [System.Obsolete]
-        // Button Test Game
-        public void AutoPlay()
-        {
-            StartCoroutine(DelayAuto());
-        }
-
-        [System.Obsolete]
-        IEnumerator DelayAuto()
-        {
-            for (int i = 0; i < totalItem / 2; i++)
-            {
-                yield return new WaitForSeconds(0.5f);
-                if (GetHint())
-                {
-                    GameManager.Instance.SelectFirstItem(hintObject1);
-                    GameManager.Instance.SelectSecondItem(hintObject2);
-                    ClearHintItems();
-                }
-                else
-                {
-                    Debug.Log("No Hint");
-                    break;
-                }
-            }
-        }
         public void UpdateBoardLevelRight(Item firstItem, Item secondItem)
         {
             MoveAllItemsRight(firstItem.column);

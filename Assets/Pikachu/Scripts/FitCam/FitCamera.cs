@@ -22,7 +22,7 @@ namespace _pikachu
             {
                 CheckSize(9.5f);
             }
-            if (height >= 11 && height <= 14 && width > 10)
+            if (height >= 10 && height <= 14 && width > 10)
             { 
                 CheckSize(11.5f);
             }

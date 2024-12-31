@@ -55,6 +55,7 @@ namespace _pikachu
                 }
             }
             cameraFit.FitCameraToGrid(board.TotalRow, board.TotalColumn, board.cellXY);
+            board.activeAnimItems();
         }
 
         [Obsolete]
@@ -74,6 +75,7 @@ namespace _pikachu
                 board.Change();
             }
             cameraFit.FitCameraToGrid(board.TotalRow, board.TotalColumn, board.cellXY);
+            board.activeAnimItems();
         }
 
 
@@ -81,38 +83,20 @@ namespace _pikachu
         public void NormalLevel()
         {
             SwitchModeDir();
-            board.TotalColumn = Random.RandomRange(10, 13);
-            board.TotalRow = 12;
+            board.TotalColumn = Random.RandomRange(12, 15);
+            board.TotalRow = 10;
             countSprite = Random.RandomRange(15, 21);
             int startSprite = Random.Range(0, 37 - countSprite);
             int endSprite = startSprite + countSprite;
             cameraFit.transform.position = Vector3.zero;
-            if (board.TotalColumn == 12 && board.TotalRow == 10)
-            {
-                int choice = Random.RandomRange(0, 3);
-                switch (choice)
-                {
-                    case 0:
-                        board.SpawnShapePlus(startSprite, endSprite);
-                        break;
-                    case 1:
-                        board.SpawnShapeDiamond(startSprite, endSprite);
-                        break;
-                    case 2:
-                        board.SpawnShapeSquare(startSprite, endSprite);
-                        break;
-                }
-            }
-            else
-            {
-                board.SpawnShapeSquare(startSprite, endSprite);
-            }
+            board.SpawnShapeSquare(startSprite, endSprite);
             GameManager.Instance.totalItems = board.TotalItem;
             while (!board.GetHint(true))
             {
                 board.Change();
             }
             cameraFit.FitCameraToGrid(board.TotalRow, board.TotalColumn, board.cellXY);
+            board.activeAnimItems();
         }
 
         [Obsolete]
@@ -125,32 +109,14 @@ namespace _pikachu
             int startSprite = Random.Range(0, 37 - countSprite);
             int endSprite = startSprite + countSprite;
             cameraFit.transform.position = Vector3.zero;
-            if (board.TotalColumn == 12 && board.TotalRow == 10)
-            {
-                int choice = Random.RandomRange(0, 3);
-                switch (choice)
-                {
-                    case 0:
-                        board.SpawnShapePlus(startSprite, endSprite);
-                        break;
-                    case 1:
-                        board.SpawnShapeDiamond(startSprite, endSprite);
-                        break;
-                    case 2:
-                        board.SpawnShapeSquare(startSprite, endSprite);
-                        break;
-                }
-            }
-            else
-            {
-                board.SpawnShapeSquare(startSprite, endSprite);
-            }
+            board.SpawnShapeSquare(startSprite, endSprite);
             GameManager.Instance.totalItems = board.TotalItem;
             while (!board.GetHint(true))
             {
                 board.Change();
             }
             cameraFit.FitCameraToGrid(board.TotalRow, board.TotalColumn, board.cellXY);
+            board.activeAnimItems();
         }
 
         [Obsolete]

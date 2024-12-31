@@ -8,8 +8,8 @@ namespace _pikachu
     public class LineMover : MonoBehaviour
     {
         private LineRenderer lineRenderer;
-        public float speed1 = 8f;
-        public float speed2 = 8f;
+        public float speed1 = 9.6f;
+        public float speed2 = 9.6f;
         private Transform nodeObject;
         public void SetPosition(Vector3 pos)
         {
@@ -26,8 +26,8 @@ namespace _pikachu
         }
         private void OnEnable()
         {
-            speed1 = 8f;
-            speed2 = 8f;
+            speed1 = 9.6f;
+            speed2 = 9.6f;
             if (lineRenderer == null)
             {
                 lineRenderer = GetComponent<LineRenderer>();
