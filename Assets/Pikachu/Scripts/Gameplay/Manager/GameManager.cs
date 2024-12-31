@@ -176,12 +176,6 @@ namespace _pikachu
             clearItems = 0;
             DOTween.SetTweensCapacity(500, 200);
             level = PlayerPrefs.GetInt(StringUse.CurrentLevel, 1);
-            if (level == 1)
-            {
-                IsFirstPlayGame_Pika = true;
-                NumberCanUseChange = 3;
-                NumberCanUseHint = 3;
-            }
        /*     NumberCanUseChange = 300;
             NumberCanUseHint = 300;*/
             difficultyLevel = DifficultyLevel;

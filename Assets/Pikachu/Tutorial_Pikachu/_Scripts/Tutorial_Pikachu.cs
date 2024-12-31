@@ -38,6 +38,10 @@ namespace _pikachu
             {
                 dime.gameObject.SetActive(false);
             });
+            foreach(var item in GameManager.Instance.board.items)
+            {
+                item.ClearTut();
+            }
             GameManager.Instance.IsFirstPlayGame_Pika = false;
         }
     }

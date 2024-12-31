@@ -33,6 +33,10 @@ namespace _pikachu
         {
             btnBack.onClick.AddListener(() => { });
             btnPause.onClick.AddListener(() => {
+        /*        if (GameManager.Instance.Over)
+                {
+                    return;
+                }*/
                 GameManager.Instance.Pause = true;
                 panelPause.gameObject.SetActive(true);
             });
@@ -89,7 +93,6 @@ namespace _pikachu
             btnReplay = panelLosseAndWin.GetChild(0).GetChild(0).GetComponent<Button>();
             txtLevel = transform.GetChild(0).GetChild(3).GetComponent<TextMeshProUGUI>();
 
-            panelPause = transform.GetChild(0).GetChild(6).gameObject;
         }
 
         [System.Obsolete]

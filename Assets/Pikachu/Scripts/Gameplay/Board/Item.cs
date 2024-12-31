@@ -90,12 +90,12 @@ namespace _pikachu
         }
         public void ActiveTut()
         {
-            spriteObject.sortingOrder = 5;
-            itemBackground.sortingOrder = 4;
+            spriteObject.sortingOrder = 20;
+            itemBackground.sortingOrder = 15;
         }
         public void ClearTut()
         {
-            spriteObject.sortingOrder = 2;
+            spriteObject.sortingOrder = 5;
             itemBackground.sortingOrder = 1;
         }
     }
