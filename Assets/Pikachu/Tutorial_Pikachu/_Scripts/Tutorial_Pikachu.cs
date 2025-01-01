@@ -19,7 +19,10 @@ namespace _pikachu
         public void ShowHint()
         {
             if (HintShowing) return;
-
+            GameManager.Instance.board.items[2, 8].ActiveTut();
+            GameManager.Instance.board.items[2, 8].IsSelectTut = true;
+            GameManager.Instance.board.items[5, 8].ActiveTut();
+            GameManager.Instance.board.items[5, 8].IsSelectTut = true;
             DOVirtual.DelayedCall(0.1f, () =>
             {
                 HintShowing = true;

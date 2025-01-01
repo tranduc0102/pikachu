@@ -122,28 +122,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &1099418441 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6506053493184281069, guid: 78513591ae3c9db48977e243840d21d2, type: 3}
-  m_PrefabInstance: {fileID: 5570301554212805631}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1131366393 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3691701738214124089, guid: 78513591ae3c9db48977e243840d21d2, type: 3}
-  m_PrefabInstance: {fileID: 5570301554212805631}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &5570301554212805631
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -200,57 +178,13 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2953117805897228493, guid: 78513591ae3c9db48977e243840d21d2, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 378.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2953117805897228493, guid: 78513591ae3c9db48977e243840d21d2, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 185.9
-      objectReference: {fileID: 0}
     - target: {fileID: 3396075152530769800, guid: 78513591ae3c9db48977e243840d21d2, type: 3}
       propertyPath: m_Name
       value: Pikachu
       objectReference: {fileID: 0}
-    - target: {fileID: 3558499244937993789, guid: 78513591ae3c9db48977e243840d21d2, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 378.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3558499244937993789, guid: 78513591ae3c9db48977e243840d21d2, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 185.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 3558499244937993789, guid: 78513591ae3c9db48977e243840d21d2, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -260
-      objectReference: {fileID: 0}
-    - target: {fileID: 4497553251446564853, guid: 78513591ae3c9db48977e243840d21d2, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5007007665329490856, guid: 78513591ae3c9db48977e243840d21d2, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 716.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5007007665329490856, guid: 78513591ae3c9db48977e243840d21d2, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 800.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 5007007665329490856, guid: 78513591ae3c9db48977e243840d21d2, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 140
-      objectReference: {fileID: 0}
-    - target: {fileID: 6743696570003624779, guid: 78513591ae3c9db48977e243840d21d2, type: 3}
-      propertyPath: replay
-      value: 
-      objectReference: {fileID: 1099418441}
-    - target: {fileID: 6743696570003624779, guid: 78513591ae3c9db48977e243840d21d2, type: 3}
-      propertyPath: resume
-      value: 
-      objectReference: {fileID: 1131366393}
-    - target: {fileID: 6876203659048435831, guid: 78513591ae3c9db48977e243840d21d2, type: 3}
+    - target: {fileID: 5267936878334471577, guid: 78513591ae3c9db48977e243840d21d2, type: 3}
       propertyPath: m_Color.a
-      value: 0.99215686
+      value: 0.98039216
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

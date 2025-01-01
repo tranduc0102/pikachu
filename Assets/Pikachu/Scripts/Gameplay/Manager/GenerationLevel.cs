@@ -28,7 +28,7 @@ namespace _pikachu
             cameraFit.transform.position = Vector3.zero;
             board.SpawnShapeSquare(startSprite, endSprite);
             GameManager.Instance.totalItems = board.TotalItem;
-            if (GameManager.Instance.Level == 1 && GameManager.Instance.IsFirstPlayGame_Pika)
+            if (GameManager.Instance.Level == 1)
             { // Tutorial
                 if (board.items[2, 8].value != board.items[5, 8].value)
                 {
@@ -40,11 +40,6 @@ namespace _pikachu
                             break;
                         }
                     }
-                    board.items[2, 8].ActiveTut();
-                    board.items[2, 8].IsSelectTut = true;
-                    board.items[5, 8].ActiveTut();
-                    board.items[5, 8].IsSelectTut = true;
-                    Tutorial_Pikachu.Instance.ShowHint();
                 }
             }
             else

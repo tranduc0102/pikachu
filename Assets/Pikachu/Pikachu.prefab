@@ -4209,6 +4209,10 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 2442027290969926332, guid: e18bde249906179439d02678d3c228d4, type: 3}
+      propertyPath: m_Color.a
+      value: 0.98039216
+      objectReference: {fileID: 0}
     - target: {fileID: 6238099653506375888, guid: e18bde249906179439d02678d3c228d4, type: 3}
       propertyPath: m_Name
       value: Tutorial_Pika
@@ -4307,11 +4311,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8979561634476526878, guid: e18bde249906179439d02678d3c228d4, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 14.49
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8979561634476526878, guid: e18bde249906179439d02678d3c228d4, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 649
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

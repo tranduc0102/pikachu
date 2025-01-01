@@ -158,6 +158,11 @@ namespace _pikachu
                 }
             }
             GameManager.Instance.Pause = false;
+            if(GameManager.Instance.Level == 1 && GameManager.Instance.IsFirstPlayGame_Pika)
+            {
+                yield return new WaitForSeconds(0.2f);
+                Tutorial_Pikachu.Instance.ShowHint();
+            }
         }
         public bool CheckConnectItem(Item startItem, Item endItem, bool hint = false)
         {

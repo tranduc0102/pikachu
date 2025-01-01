@@ -169,7 +169,7 @@ namespace _pikachu
         [System.Obsolete]
         private void Start()
         {
-/*            PlayerPrefs.DeleteAll();*/
+            PlayerPrefs.DeleteAll();
             isFinishLevel = false;
             isPause = false;
             overGame = false;
