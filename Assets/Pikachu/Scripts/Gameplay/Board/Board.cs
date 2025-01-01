@@ -141,10 +141,9 @@ namespace _pikachu
         }
         IEnumerator StartAnim()
         {
-            GameManager.Instance.Pause = true;
             for (int j = 0; j < items.GetLength(1); j++)
             {
-                for(int i = 0; i < items.GetLength(0); i++)
+                for (int i = 0; i < items.GetLength(0); i++)
                 {
                     if (items[i, j].gameObject.activeSelf)
                     {
@@ -158,9 +157,9 @@ namespace _pikachu
                 }
             }
             GameManager.Instance.Pause = false;
-            if(GameManager.Instance.Level == 1 && GameManager.Instance.IsFirstPlayGame_Pika)
+            if (GameManager.Instance.Level == 1 && GameManager.Instance.IsFirstPlayGame_Pika)
             {
-                yield return new WaitForSeconds(0.2f);
+                yield return new WaitForSeconds(0.5f);
                 Tutorial_Pikachu.Instance.ShowHint();
             }
         }
@@ -251,7 +250,7 @@ namespace _pikachu
             {
                 for (int column = 0; column < items.GetLength(1); column++)
                 {
-                    if (!items[row, column].gameObject.activeSelf || items[row, column].value == -1 )
+                    if (!items[row, column].gameObject.activeSelf || items[row, column].value == -1)
                     {
                         continue;
                     }
@@ -265,11 +264,14 @@ namespace _pikachu
                         {
                             hintObject1 = items[row, column];
                             hintObject2 = items[position.row, position.column];
-                            if (!check)
+                            if (hintObject1 != hintObject2)
                             {
-                                ShowHintItemsColor();
+                                if (!check)
+                                {
+                                    ShowHintItemsColor();
+                                }
+                                return true;
                             }
-                            return true;
                         }
                     }
                 }
@@ -284,7 +286,7 @@ namespace _pikachu
             {
                 for (int column = 0; column < items.GetLength(1); column++)
                 {
-                    if (currentItem.row == row && currentItem.column == column || items[row, column].value == -1)
+                    if (ReferenceEquals(currentItem, items[row, column]) || items[row, column].value == -1 || !items[row, column].gameObject.activeSelf)
                     {
                         continue;
                     }
@@ -328,6 +330,12 @@ namespace _pikachu
                     SwapItems(item1, item2);
                 }
             }
+            if (hintObject1 != null && hintObject2 != null)
+            {
+                Color cleanColor = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+                hintObject1.itemBackground.color = cleanColor;
+                hintObject2.itemBackground.color = cleanColor;
+            }
             ClearHintItems();
         }
         public void SwapItems(Item itemA, Item itemB)
@@ -352,12 +360,6 @@ namespace _pikachu
 
         private void ClearHintItems()
         {
-            if (hintObject1 != null && hintObject2 != null)
-            {
-                Color cleanColor = new Color(1.0f, 1.0f, 1.0f, 1.0f);
-                hintObject1.itemBackground.color = cleanColor;
-                hintObject2.itemBackground.color = cleanColor;
-            }
             hintObject1 = null;
             hintObject2 = null;
         }
